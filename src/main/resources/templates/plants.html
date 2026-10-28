@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Мои растения</title>
+</head>
+<body>
+    <h1>Каталог растений</h1>
+    <a th:href="@{/plants/new}">Добавить растение</a>
+    <hr>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Полив (дней)</th>
+            <th>Освещение</th>
+        </tr>
+        <tr th:each="plant : ${plants}">
+            <td th:text="${plant.id}"></td>
+            <td th:text="${plant.name}"></td>
+            <td th:text="${plant.wateringIntervalDays}"></td>
+            <td th:text="${plant.lightLevel}"></td>
+        </tr>
+    </table>
+</body>
+</html>

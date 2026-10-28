@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>�������� ��������</title>
+</head>
+<body>
+    <h1>����� ��������</h1>
+    <form action="#" th:action="@{/plants}" th:object="${plant}" method="post">
+        <p>��������: <input type="text" th:field="*{name}" required /></p>
+        <p>����� (��� � ����): <input type="number" th:field="*{wateringIntervalDays}" required /></p>
+        <p>��������� (LOW, MEDIUM, HIGH): <input type="text" th:field="*{lightLevel}" required /></p>
+        <p><button type="submit">���������</button></p>
+    </form>
+    <a th:href="@{/plants}">�����</a>
+</body>
+</html>
