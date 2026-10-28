@@ -6,20 +6,32 @@
 </head>
 <body>
     <h1>Каталог растений</h1>
-    <a th:href="@{/plants/new}">Добавить растение</a>
+    
+    <div style="margin-bottom: 20px;">
+        <a th:href="@{/plants/new}">Добавить растение</a> | 
+        <a th:href="@{/logout}">Выйти</a>
+    </div>
+    
     <hr>
+    
     <table border="1">
         <tr>
             <th>ID</th>
             <th>Название</th>
             <th>Полив (дней)</th>
             <th>Освещение</th>
+            <th>Действия</th>
         </tr>
         <tr th:each="plant : ${plants}">
             <td th:text="${plant.id}"></td>
             <td th:text="${plant.name}"></td>
             <td th:text="${plant.wateringIntervalDays}"></td>
             <td th:text="${plant.lightLevel}"></td>
+            <td>
+                <a th:href="@{/plants/edit/{id}(id=${plant.id})}">Ред.</a> | 
+                <a th:href="@{/plants/{id}/logs(id=${plant.id})}">Уход</a> | 
+                <a th:href="@{/plants/delete/{id}(id=${plant.id})}" style="color: red;">Удал.</a>
+            </td>
         </tr>
     </table>
 </body>

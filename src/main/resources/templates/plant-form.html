@@ -2,16 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>�������� ��������</title>
+    <title>Растение</title>
 </head>
 <body>
-    <h1>����� ��������</h1>
-    <form action="#" th:action="@{/plants}" th:object="${plant}" method="post">
-        <p>��������: <input type="text" th:field="*{name}" required /></p>
-        <p>����� (��� � ����): <input type="number" th:field="*{wateringIntervalDays}" required /></p>
-        <p>��������� (LOW, MEDIUM, HIGH): <input type="text" th:field="*{lightLevel}" required /></p>
-        <p><button type="submit">���������</button></p>
+    <!-- Заголовок меняется в зависимости от того, создаем мы или редактируем -->
+    <h1 th:text="${plant.id != null ? 'Редактировать растение' : 'Новое растение'}"></h1>
+    
+    <!-- Если ID есть, отправляем на /update/{id}, если нет — на /plants -->
+    <form action="#" th:action="${plant.id != null ? '/plants/update/' + plant.id : '/plants'}" th:object="${plant}" method="post">
+        <p>Название: <input type="text" th:field="*{name}" required/></p>
+        <p>Полив (раз в дней): <input type="number" th:field="*{wateringIntervalDays}" required/></p>
+        <p>Освещение (LOW, MEDIUM, HIGH): <input type="text" th:field="*{lightLevel}" required/></p>
+        <p><button type="submit">Сохранить</button></p>
     </form>
-    <a th:href="@{/plants}">�����</a>
+    <a th:href="@{/plants}">Назад</a>
 </body>
 </html>

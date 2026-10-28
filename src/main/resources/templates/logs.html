@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Уход за растением</title>
+</head>
+<body>
+    <h1>История ухода: <span th:text="${plant.name}"></span></h1>
+    <a th:href="@{/plants/{id}/logs/new(id=${plant.id})}">Добавить запись</a> | 
+    <a th:href="@{/plants}">Назад к списку</a>
+    <hr>
+    <table border="1">
+        <tr>
+            <th>Дата</th>
+            <th>Действие</th>
+            <th>Заметка</th>
+            <th>Опции</th>
+        </tr>
+        <tr th:each="log : ${logs}">
+            <td th:text="${log.date}"></td>
+            <td th:text="${log.actionType}"></td>
+            <td th:text="${log.note}"></td>
+            <td><a th:href="@{/plants/{id}/logs/delete/{logId}(id=${plant.id}, logId=${log.id})}">Удалить</a></td>
+        </tr>
+    </table>
+</body>
+</html>

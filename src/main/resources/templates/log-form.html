@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Новая запись об уходе</title>
+</head>
+<body>
+    <h1>Новая запись для растения: <span th:text="${careLog.plant.name}"></span></h1>
+    <form action="#" th:action="@{/plants/{id}/logs(id=${careLog.plant.id})}" th:object="${careLog}" method="post">
+        <p>Действие (WATERING, FERTILIZING, REPOTTING): <input type="text" th:field="*{actionType}" required/></p>
+        <p>Дата: <input type="date" th:field="*{date}" required/></p>
+        <p>Заметка: <input type="text" th:field="*{note}"/></p>
+        <p><button type="submit">Сохранить</button></p>
+    </form>
+    <a th:href="@{/plants/{id}/logs(id=${careLog.plant.id})}">Назад</a>
+</body>
+</html>
